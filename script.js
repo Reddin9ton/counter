@@ -16,14 +16,28 @@ function counter() {
     total = (text.length - trims);
     return total;
 }
-
+let wordsCount = {};
 function topWords() {
+    let wordsCount = [];
     text = document.getElementById('txt').value;
     wordsArray = text.split(' ');
-    for (i = 0; i < text.length; i++) {
-    if (wordsArray.includes(wordsArray[i]) > 3) {
-    wordsList.push(wordsArray[i]);
+    wordsArray.forEach((elem) => {
+        if (wordsCount[elem]) {
+            wordsCount[elem] ++;
+        } else {
+            wordsCount[elem] = 1;
+        }
+
+
+    })
+    let itogArray = [];
+for (let word in wordsCount) {
+    if (wordsCount[word] > 3) {
+        itogArray.push(word);
     }
-    }
-    console.log(wordsList);
-     }
+}
+let show = itogArray;
+let block = document.getElementById('resultBlock');
+block.innerHTML = show.join(' \ ');
+};
+
